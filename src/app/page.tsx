@@ -142,7 +142,7 @@ export default function Home() {
                 <svg className="w-8 h-8 text-white group-hover:text-orange-300 transition-all duration-300 group-hover:scale-110 group-hover:absolute group-hover:left-1/2 group-hover:top-1/2 group-hover:-translate-x-1/2 group-hover:-translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                <span className="text-white font-sans font-medium text-sm sm:text-base text-center group-hover:text-orange-200 transition-all duration-300 group-hover:opacity-0 group-hover:translate-x-4">CV İndir</span>
+                <span className="text-white font-sans font-medium text-sm sm:text-base text-center group-hover:text-orange-200 transition-all duration-300 group-hover:opacity-0 group-hover:translate-x-4">Download My CV</span>
           </a>
         </div>
           </div>
