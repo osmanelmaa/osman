@@ -1,17 +1,13 @@
-@import "tailwindcss";
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-script: var(--font-dancing-script);
-  --font-display: var(--font-playfair);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-poppins);
+  --font-display: var(--font-space-grotesk);
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --gradient-x: 50%;
+  --gradient-y: 50%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,7 +30,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -104,4 +100,418 @@ body {
 .animate-float-slow {
   animation: float-slow 12s linear infinite;
   animation-delay: 4s;
+}
+
+/* Main Container */
+.container {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0f;
+}
+
+/* Animated Gradient Background */
+.container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(
+      circle 800px at var(--gradient-x, 50%) var(--gradient-y, 50%),
+      rgba(139, 92, 246, 0.5) 0%,
+      rgba(99, 102, 241, 0.35) 20%,
+      rgba(79, 70, 229, 0.25) 40%,
+      rgba(67, 56, 202, 0.15) 60%,
+      transparent 80%
+    ),
+    radial-gradient(
+      circle 600px at calc(var(--gradient-x, 50%) - 25%) calc(var(--gradient-y, 50%) + 15%),
+      rgba(168, 85, 247, 0.4) 0%,
+      rgba(147, 51, 234, 0.25) 25%,
+      rgba(126, 34, 206, 0.15) 50%,
+      transparent 75%
+    ),
+    radial-gradient(
+      circle 700px at calc(var(--gradient-x, 50%) + 20%) calc(var(--gradient-y, 50%) - 20%),
+      rgba(59, 130, 246, 0.35) 0%,
+      rgba(37, 99, 235, 0.2) 30%,
+      rgba(29, 78, 216, 0.1) 50%,
+      transparent 70%
+    );
+  filter: blur(100px);
+  will-change: background;
+  z-index: 0;
+  animation: gradientPulse 10s ease-in-out infinite;
+}
+
+/* Secondary gradient layer for depth */
+.container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(
+      circle 500px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(192, 132, 252, 0.3) 0%,
+      rgba(168, 85, 247, 0.2) 15%,
+      rgba(139, 92, 246, 0.1) 30%,
+      transparent 60%
+    );
+  filter: blur(80px);
+  will-change: background;
+  z-index: 0;
+  animation: gradientShift 15s ease-in-out infinite;
+}
+
+@keyframes gradientPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-5%, -5%) scale(1.05);
+  }
+  66% {
+    transform: translate(5%, 5%) scale(0.95);
+  }
+}
+
+.background-logos {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.logo {
+  position: absolute;
+  top: -5rem;
+  opacity: 0.2;
+  color: white;
+  font-size: 2.25rem;
+}
+
+.logo.linux {
+  left: 25%;
+}
+
+.logo.apache {
+  left: 75%;
+  font-size: 2.5rem;
+}
+
+.logo.javascript {
+  right: 25%;
+  color: #facc15;
+  font-size: 2.5rem;
+}
+
+.logo.css {
+  left: 50%;
+  color: #60a5fa;
+  font-size: 2.5rem;
+}
+
+.logo.tailwind {
+  right: 33.333333%;
+  color: #22d3ee;
+  font-size: 2.5rem;
+}
+
+.logo.mongodb {
+  left: 33.333333%;
+  color: #4ade80;
+  font-size: 2.5rem;
+}
+
+.logo.react {
+  right: 50%;
+  color: #93c5fd;
+  font-size: 2.5rem;
+}
+
+.logo.nodejs {
+  left: 66.666667%;
+  color: #22c55e;
+  font-size: 2.5rem;
+}
+
+.main {
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: white;
+  line-height: 1.2;
+  font-size: 1.875rem;
+}
+
+.title-name {
+  font-size: 1.875rem;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: #e9d5ff;
+  font-family: var(--font-space-grotesk);
+  line-height: 1.75;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.email-link {
+  display: inline-block;
+  font-size: 1.125rem;
+  color: #e9d5ff;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: #c4b5fd;
+  transition: color 0.3s, text-decoration-color 0.3s;
+  letter-spacing: 0.01em;
+}
+
+.email-link:hover {
+  color: white;
+  text-decoration-color: white;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  min-width: 120px;
+  min-height: 50px;
+  width: 100%;
+  text-decoration: none;
+}
+
+.social-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.social-button-group {
+  position: relative;
+}
+
+.social-button-group:hover .social-icon {
+  transform: scale(1.1) translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.social-button-group:hover .social-text {
+  opacity: 0;
+  transform: translateX(1rem);
+}
+
+.social-button-group.github:hover .social-icon {
+  color: #c084fc;
+}
+
+.social-button-group.linkedin:hover .social-icon {
+  color: #93c5fd;
+}
+
+.social-button-group.cv:hover .social-icon {
+  color: #fdba74;
+}
+
+.social-icon {
+  width: 2rem;
+  height: 2rem;
+  color: white;
+  transition: all 0.3s;
+}
+
+.social-text {
+  color: white;
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-align: center;
+  transition: all 0.3s;
+  letter-spacing: 0.02em;
+}
+
+/* Responsive Styles */
+@media (min-width: 640px) {
+  .main {
+    padding: 2rem 1.5rem;
+  }
+  
+  .content-wrapper {
+    gap: 1.5rem;
+  }
+  
+  .title {
+    font-size: 4.5rem;
+  }
+  
+  .title-name {
+    font-size: 3rem;
+    display: block;
+  }
+  
+  .subtitle {
+    font-size: 2.25rem;
+  }
+  
+  .email-link {
+    font-size: 1.25rem;
+  }
+  
+  .social-links {
+    flex-direction: row;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  
+  .social-button {
+    gap: 1rem;
+    padding: 1.25rem 2rem;
+    min-width: 140px;
+    min-height: 60px;
+    width: auto;
+  }
+  
+  .logo {
+    font-size: 2.5rem;
+  }
+  
+  .logo.apache {
+    font-size: 3rem;
+  }
+  
+  .logo.javascript,
+  .logo.css,
+  .logo.tailwind,
+  .logo.mongodb,
+  .logo.react,
+  .logo.nodejs {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 3.75rem;
+  }
+  
+  .title-name {
+    font-size: 3.75rem;
+  }
+  
+  .subtitle {
+    font-size: 1.875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main {
+    padding: 2rem 2rem;
+  }
+  
+  .content-wrapper {
+    gap: 2rem;
+  }
+  
+  .title {
+    font-size: 4.5rem;
+  }
+  
+  .title-name {
+    font-size: 4.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.875rem;
+  }
+  
+  .email-link {
+    font-size: 1.5rem;
+  }
+  
+  .social-links {
+    margin-top: 4rem;
+  }
+  
+  .social-button {
+    padding: 1.5rem 2.5rem;
+  }
+  
+  .logo {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .title {
+    font-size: 5rem;
+  }
+  
+  .title-name {
+    font-size: 5rem;
+  }
+  
+  .subtitle {
+    font-size: 2.25rem;
+  }
+  
+  .email-link {
+    font-size: 1.875rem;
+  }
 }
