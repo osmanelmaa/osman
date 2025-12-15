@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SiLinux, SiJavascript, SiCss3, SiTailwindcss, SiMongodb, SiReact, SiNodedotjs, SiApache } from 'react-icons/si';
-
+import Snowfall from 'react-snowfall';
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
   const [gradientPosition, setGradientPosition] = useState({ x: 50, y: 50 });
-
+  const [isDesktop, setIsDesktop] = useState(false);
   useEffect(() => {
     let animationFrame: number;
     
@@ -37,8 +37,20 @@ export default function Home() {
     };
   }, []);
 
+  // Ekran boyutunu kontrol et
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   return (
-    <div 
+    <>
+      <div 
       className="container"
       style={{
         '--mouse-x': `${mousePosition.x}%`,
@@ -155,5 +167,19 @@ export default function Home() {
           </div>
       </main>
     </div>
+      <Snowfall 
+        color="white"
+        snowflakeCount={200}
+        style={{ 
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          pointerEvents: 'none',
+          zIndex: 50,
+        }} 
+      />
+    </>
   );
 }
