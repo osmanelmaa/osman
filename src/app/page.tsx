@@ -100,6 +100,21 @@ export default function Home() {
             <SiNodedotjs />
           </div>
         </div>
+        {/* Happy New Year Background Banner */}
+        <div className="new-year-banner">
+          <div className="new-year-text">
+            ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨
+          </div>
+          <div className="new-year-text">
+            ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨
+          </div>
+          <div className="new-year-text">
+            ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨
+          </div>
+          <div className="new-year-text">
+            ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨ HAPPY NEW YEAR ✨
+          </div>
+        </div>
      
           <main className="main">
             <div className="content-wrapper">
@@ -112,12 +127,9 @@ export default function Home() {
                 <br/>
                 Student @ Akdeniz University / MIS
               </p>
-              <a 
-                href="mailto:osmanalielmaa@gmail.com" 
-                className="email-link"
-              >
-                osmanalielmaa@gmail.com
-              </a>
+              <p className="subtitle">
+              <a href="https://osmanelma.blog" target="_blank" rel="noopener noreferrer">My Blog Site</a>
+              </p>
             </div>
           {/* Social Links */}
             <div className="social-links">

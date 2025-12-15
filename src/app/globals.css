@@ -9,7 +9,12 @@
   --gradient-x: 50%;
   --gradient-y: 50%;
 }
-
+a{
+  color: #c084fc;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -191,6 +196,42 @@ body {
   inset: 0;
   overflow: hidden;
   z-index: 1;
+}
+
+.new-year-banner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.new-year-text {
+  position: relative;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.12);
+  text-shadow: 0 0 20px rgba(147, 197, 253, 0.35);
+  animation: newYearMarquee 18s linear infinite;
+}
+
+@keyframes newYearMarquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .logo {
